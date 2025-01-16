@@ -4,9 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página Inicial</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #FA8072;
+      color: #800000;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      border: 1px solid #b49d9d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      background-color: #FFE4E1;
+      text-align: center;
+    }
+    h1 {
+      color: #b30000;
+    }
+    a {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border: 1px solid darkred;
+      border-radius: 5px;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background-color: maroon;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    a:hover {
+      background-color: #b30000;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    a:active {
+      background-color: #8B0000;
+      transform: scale(0.95);
+    }
+    @media (max-width: 800px) {
+      .container {
+        width: 95%;
+        padding: 10px;
+      }
+      a {
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Bem-vindo ao Formulário de Corte de Aço</h1>
-  <a href="https://joaodev01001.github.io/Formulario_Corte_De_Aco/formulario.html">Abrir Formulário</a>
+  <div class="container">
+    <h1>Bem-vindo ao Formulário de Corte de Aço</h1>
+    <a href="https://joaodev01001.github.io/Formulario_Corte_De_Aco/formulario.html">Abrir Formulário</a>
+  </div>
 </body>
 </html>
