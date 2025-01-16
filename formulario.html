@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notas com Problemas</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #FA8072;
+      color: #800000;
+      margin: 0;
+      padding: 0;
+    }
+    form {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      border: 1px solid #b49d9d;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      background-color: #FFE4E1;
+    }
+    h1 {
+      text-align: center;
+      color: #b30000;
+    }
+    label {
+      color: #b30000;
+    }
+    input[type=text],
+    input[type=date],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #b30000;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+    input[type=submit] {
+      width: 100%;
+      padding: 12px 20px;
+      border-color: darkred;
+      border-radius: 5px;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background-color: maroon;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type=submit]:hover {
+      background-color: #b30000;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    input[type=submit]:active {
+      background-color: #8B0000;
+      transform: scale(0.95);
+    }
+    input[type=submit]:disabled {
+      background-color: #8B0000;
+      cursor: not-allowed;
+    }
+    @media (max-width: 800px) {
+      form {
+        width: 95%;
+        padding: 10px;
+      }
+      input[type=submit] {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <form id="formulario" action="javascript:void(0);" method="get">
+      <h1>CADASTRAR NOTAS PARA CORREÇÃO</h1>
+      <label for="comprador">Comprador:</label><br>
+      <input type="text" id="comprador" name="comprador" placeholder="Digite o nome do comprador"><br><br>
+      <label for="notaFiscal">Nota fiscal:</label><br>
+      <input type="text" id="notaFiscal" name="notaFiscal" placeholder="Digite o número da nota fiscal"><br><br>
+      <label for="fornecedor">Fornecedor:</label><br>
+      <input type="text" id="fornecedor" name="fornecedor" placeholder="Digite o nome do fornecedor"><br><br>
+      <label for="origem">Origem:</label><br>
+      <input type="text" id="origem" name="origem" placeholder="Digite a origem"><br><br>
+      <label for="emissao">Data da emissão:</label><br>
+      <input type="date" id="emissao" name="emissao"><br><br>
+      <label for="status">Status:</label><br>
+      <select name="status" id="status">
+        <option value="Material entregue">Material entregue</option>
+        <option value="Pend. amarração">Pend. amarração</option>
+      </select><br><br>
+      <label for="prioridade">Prioridade:</label><br>
+      <select name="prioridade" id="prioridade">
+        <option value="Baixa">Baixa</option>
+        <option value="Alta">Alta</option>
+      </select><br><br>
+      <label for="observacao">Observação:</label><br>
+      <input type="text" id="observacao" name="observacao" placeholder="Digite o problema da nota"><br><br>
+      <label for="motivo">Motivo:</label><br>
+      <select name="motivo" id="motivo">
+        <option value="Atraso entrega">Atraso entrega</option>
+        <option value="Erro amarração">Erro amarração</option>
+      </select><br><br>
+      <input type="submit" value="Enviar" id="enviar">
+    </form>
+  </div>
+  <script>
+    $(function() {
+      function coletarDados() {
+        var comprador = document.getElementById('comprador').value;
+        var fornecedor = document.getElementById('fornecedor').value;
+        var origem = document.getElementById('origem').value;
+        var emissao = document.getElementById('emissao').value;
+        var status = document.getElementById('status').value;
+        var prioridade = document.getElementById('prioridade').value;
+        var observacao = document.getElementById('observacao').value;
+        var motivo = document.getElementById('motivo').value;
+        var notaFiscal = document.getElementById('notaFiscal').value;
+        
+        google.script.run.withSuccessHandler(function(response) {
+          document.getElementById('formulario').reset();
+          alert(response);
+        }).incluirNaPlanilha(comprador, fornecedor, origem, emissao, status, prioridade, observacao, motivo, notaFiscal);
+      }
+
+      document.getElementById('enviar').addEventListener('click', coletarDados);
+    });
+  </script>
+</body>
+</html>
